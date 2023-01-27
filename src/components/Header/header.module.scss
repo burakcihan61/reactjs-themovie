@@ -1,0 +1,21 @@
+@import '../../styles/globalVariables.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .logoImg {
+    width: 150px;
+  }
+  .nav {
+    display: flex;
+    gap: 24px;
+  }
+  a {
+    color: $dark-grayish-blue;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $very-dark-blue;
+  }
+}
