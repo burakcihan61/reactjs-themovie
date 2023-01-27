@@ -1,0 +1,24 @@
+@import '../../styles/globalVariables.scss';
+
+.container {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $grayish-blue;
+  min-height: 20vh;
+  .inputSearch {
+    width: 50%;
+    height: 50px;
+    border-radius: 99999px;
+    border: none;
+    background-color: $white;
+    color: $very-dark-blue;
+    font-size: 1.5rem;
+    outline: none;
+    &::placeholder {
+      text-align: center;
+      color: $very-dark-blue;
+    }
+  }
+}
