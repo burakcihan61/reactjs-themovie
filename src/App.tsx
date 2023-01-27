@@ -1,11 +1,8 @@
 import React from 'react';
+import Container from './components/Container/Container';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>The Movie</h1>
-    </div>
-  );
+  return <Container />;
 }
 
 export default App;
