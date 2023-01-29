@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './container.module.scss';
 import Header from '../Header/Header';
-import Content from '../Content/Content';
+import SearchBar from '../SearchBar/SearchBar';
+
 
 const Container = () => {
   return (
     <div className={styles.container}>
       <Header />
-      <Content />
+      <SearchBar />
     </div>
   );
 };
