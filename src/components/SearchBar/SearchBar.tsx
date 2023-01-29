@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './slider.module.scss';
+import styles from './searchbar.module.scss';
 
-const Slider = () => {
+const SearchBar = () => {
   return (
     <div className={styles.container}>
       <input className={styles.inputSearch} type="search" placeholder="film search" />
@@ -9,4 +9,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default SearchBar;
