@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './content.module.scss';
+import Card from '../Card/Card';
 
 const Content = () => {
   return (
@@ -15,16 +16,7 @@ const Content = () => {
         </ul>
       </aside>
       <main className={styles.contentMain}>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
-        <div className={styles.card}>test</div>
+        <Card />
       </main>
     </div>
   );

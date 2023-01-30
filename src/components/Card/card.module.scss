@@ -1,0 +1,22 @@
+.movie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: auto;
+  img {
+    height: 250px;
+    max-width: 150px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+}
+
+.movieTitle {
+  margin: auto;
+  font-size: 10px;
+}
+.movieInfos {
+  padding: 15px 0;
+}
