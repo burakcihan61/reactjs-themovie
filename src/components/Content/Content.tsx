@@ -11,7 +11,7 @@ const Content = () => {
           <li>Altyazı</li>
           <li>Aksiyon</li>
           <li>Bilim Kurgu</li>
-          <li>Fantazig</li>
+          <li>Fantazi</li>
         </ul>
       </aside>
       <main className={styles.contentMain}>
