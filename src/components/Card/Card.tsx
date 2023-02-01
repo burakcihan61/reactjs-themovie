@@ -6,8 +6,6 @@ import styles from './card.module.scss';
 const Card: React.FC = () => {
   const [movies, setMovies] = React.useState<Result[]>([]);
 
-  const IMAGE_PATH = 'https://image.tmdb.org/t/p/w500';
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -25,7 +23,7 @@ const Card: React.FC = () => {
       {movies.map((movie: Result) => {
         return (
           <div key={movie.id} className={styles.movie}>
-            <img src={IMAGE_PATH + movie.poster_path} alt={movie.title} />
+            <img src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
             <div className={styles.movieInfos}>
               <h5 className={styles.movieTitle}>{movie.title}</h5>
             </div>
