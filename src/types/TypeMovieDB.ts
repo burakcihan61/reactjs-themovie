@@ -16,7 +16,8 @@ export type TMovieAll = {
 };
 
 export type TMovieCard = {
-  poster_path?: string;
+  poster_path: string;
   title: string;
   id: number;
+  movieImage: string;
 };
