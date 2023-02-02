@@ -1,11 +1,4 @@
-export interface Root {
-  page: number;
-  results: Result[];
-  total_pages: number;
-  total_results: number;
-}
-
-export interface Result {
+export type TMovieAll = {
   adult: boolean;
   backdrop_path?: string;
   genre_ids: number[];
@@ -20,4 +13,10 @@ export interface Result {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
+};
+
+export type TMovieCard = {
+  poster_path?: string;
+  title: string;
+  id: number;
+};
