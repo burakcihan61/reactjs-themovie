@@ -23,23 +23,8 @@
     }
   }
   .contentMain {
-    padding-top: 20px;
-    padding-left: 20px;
     width: 85%;
-    background-color: red;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: center;
-  }
-  .card {
-    width: 20%;
-    height: 225px;
-    background-color: blue;
-    margin: 20px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
