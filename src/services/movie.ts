@@ -5,7 +5,7 @@ export const getMovies = async () => {
     const { data } = await axios(
       `${process.env.REACT_APP_BASE_URL}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=tr&page=1`
     );
-    return data.results;
+    return data;
   } catch (error) {
     console.log(error);
   }

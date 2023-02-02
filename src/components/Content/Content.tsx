@@ -14,7 +14,7 @@ const Content: React.FC = () => {
     setTimeout(() => {
       getMovies().then((res) => {
         setLoading(false);
-        setMovies(res);
+        setMovies(res.results);
       });
     }, 2000);
   }, []);
@@ -35,16 +35,15 @@ const Content: React.FC = () => {
         {loading ? (
           <Loading />
         ) : (
-          movies.map((movie: TMovieCard) => {
-            return (
-              <Card
-                key={movie.id}
-                movieId={movie.id}
-                movieTitle={movie.title}
-                moviePosterPath={movie.poster_path}
-              />
-            );
-          })
+          movies.map((movie: TMovieCard) => (
+            <Card
+              key={movie.id}
+              movieId={movie.id}
+              movieTitle={movie.title}
+              movieImage={process.env.REACT_APP_IMAGE_URL}
+              moviePosterPath={movie.poster_path}
+            />
+          ))
         )}
       </main>
     </div>
