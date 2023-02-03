@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './content.module.scss';
 import Card from '../Card/Card';
 import { TMovieCard } from '../../types/TypeMovieDB';
 import { getMovies } from '../../services/movie';
 import Loading from '../Loading/Loading';
 
-const Content: React.FC = () => {
-  const [movies, setMovies] = useState<TMovieCard[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-
+type TProps = {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  movies: TMovieCard[];
+  setMovies: React.Dispatch<React.SetStateAction<TMovieCard[]>>;
+};
+const Content: React.FC<TProps> = (props: TProps) => {
   useEffect(() => {
-    setLoading(true);
+    props.setLoading(true);
     setTimeout(() => {
       getMovies().then((res) => {
-        setLoading(false);
-        setMovies(res.results);
+        props.setLoading(false);
+        props.setMovies(res.results);
       });
-    }, 2000);
+    }, 1500);
   }, []);
 
   return (
@@ -32,10 +35,10 @@ const Content: React.FC = () => {
         </ul>
       </aside>
       <main className={styles.contentMain}>
-        {loading ? (
+        {props.loading ? (
           <Loading />
         ) : (
-          movies.map((movie: TMovieCard) => (
+          props.movies.map((movie: TMovieCard) => (
             <Card
               key={movie.id}
               movieId={movie.id}
