@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './content.module.scss';
 import Card from '../Card/Card';
 import { TMovieCard } from '../../types/TypeMovieDB';
 import { getMovies } from '../../services/movie';
 import Loading from '../Loading/Loading';
+import Errors from '../Errors/Errors';
 
 type TProps = {
   loading: boolean;
@@ -11,14 +12,24 @@ type TProps = {
   movies: TMovieCard[];
   setMovies: React.Dispatch<React.SetStateAction<TMovieCard[]>>;
 };
+
 const Content: React.FC<TProps> = (props: TProps) => {
+  const [error, setError] = useState<string | null>(null);
+  const [noResults, setNoResults] = useState('');
+
   useEffect(() => {
     props.setLoading(true);
     setTimeout(() => {
-      getMovies().then((res) => {
-        props.setLoading(false);
-        props.setMovies(res.results);
-      });
+      getMovies()
+        .then((res) => {
+          props.setLoading(false);
+          props.setMovies(res.results);
+        })
+        .catch((err) => {
+          props.setLoading(false);
+          setError(err.message);
+          setNoResults('No results found');
+        });
     }, 1500);
   }, []);
 
@@ -35,6 +46,8 @@ const Content: React.FC<TProps> = (props: TProps) => {
         </ul>
       </aside>
       <main className={styles.contentMain}>
+        {error && <Errors>{error}</Errors>}
+        {!props.movies.length && <Errors>{noResults}</Errors>}
         {props.loading ? (
           <Loading />
         ) : (

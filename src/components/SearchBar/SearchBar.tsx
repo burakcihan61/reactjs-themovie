@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './searchbar.module.scss';
 import { searchMovies } from '../../services/movie';
 import { TMovieCard } from '../../types/TypeMovieDB';
 
 type TProps = {
   setMovies: React.Dispatch<React.SetStateAction<TMovieCard[]>>;
-  query: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const SearchBar: React.FC<TProps> = (props: TProps) => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const searchMovie = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (props.query === '') {
+    if (searchTerm === '') {
       return alert('Please enter a movie name');
     } else {
-      await searchMovies(props.query).then((res) => {
+      await searchMovies(searchTerm).then((res) => {
         props.setMovies(res.results);
-        props.setQuery('');
+        setSearchTerm('');
       });
     }
   };
-  const changeHandler = (e: { target: { value: React.SetStateAction<string> } }) => {
-    props.setQuery(e.target.value);
+  const searchInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
   };
   return (
     <div className={styles.container}>
@@ -31,8 +30,8 @@ const SearchBar: React.FC<TProps> = (props: TProps) => {
           className={styles.inputSearch}
           type="search"
           placeholder="film search"
-          value={props.query}
-          onChange={changeHandler}
+          value={searchTerm}
+          onChange={searchInputChangeHandler}
           aria-label="search"
           name="query"
         />
