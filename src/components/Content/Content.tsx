@@ -4,19 +4,33 @@ import Card from '../Card/Card';
 import { TMovieCard } from '../../types/TypeMovieDB';
 import { getMovies } from '../../services/movie';
 import Loading from '../Loading/Loading';
+import Errors from '../Errors/Errors';
 
-const Content: React.FC = () => {
-  const [movies, setMovies] = useState<TMovieCard[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+type TProps = {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  movies: TMovieCard[];
+  setMovies: React.Dispatch<React.SetStateAction<TMovieCard[]>>;
+};
+
+const Content: React.FC<TProps> = (props: TProps) => {
+  const [error, setError] = useState<string | null>(null);
+  const [noResults, setNoResults] = useState('');
 
   useEffect(() => {
-    setLoading(true);
+    props.setLoading(true);
     setTimeout(() => {
-      getMovies().then((res) => {
-        setLoading(false);
-        setMovies(res.results);
-      });
-    }, 2000);
+      getMovies()
+        .then((res) => {
+          props.setLoading(false);
+          props.setMovies(res.results);
+        })
+        .catch((err) => {
+          props.setLoading(false);
+          setError(err.message);
+          setNoResults('No results found');
+        });
+    }, 1500);
   }, []);
 
   return (
@@ -32,10 +46,12 @@ const Content: React.FC = () => {
         </ul>
       </aside>
       <main className={styles.contentMain}>
-        {loading ? (
+        {error && <Errors>{error}</Errors>}
+        {props.movies.length === 0 && <Errors>{noResults}</Errors>}
+        {props.loading ? (
           <Loading />
         ) : (
-          movies.map((movie: TMovieCard) => (
+          props.movies.map((movie: TMovieCard) => (
             <Card
               key={movie.id}
               movieId={movie.id}
