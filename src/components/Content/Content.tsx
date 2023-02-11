@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styles from './content.module.scss';
 import Card from '../Card/Card';
 import { TMovieCard } from '../../types/TypeMovieDB';
-import { getMovies } from '../../services/movie';
+import { getMovies, getMovieTrend } from '../../services/movie';
 import Loading from '../Loading/Loading';
 import Errors from '../Errors/Errors';
+import ListTrend from '../List/ListTrend';
+import ListPopuler from '../List/ListPopuler';
+import ListYear from '../List/ListYear';
 
 type TProps = {
   loading: boolean;
@@ -37,12 +40,33 @@ const Content: React.FC<TProps> = (props: TProps) => {
     <div className={styles.container}>
       <aside className={styles.asideContent}>
         <ul>
-          <li>Trend</li>
-          <li>Popüler</li>
-          <li>2023 Filmleri</li>
-          <li>2022 Filmleri</li>
-          <li>2021 Filmleri</li>
-          <li>2020 Filmleri</li>
+          <li>
+            <ListTrend
+              movies={props.movies}
+              setMovies={props.setMovies}
+              setLoading={props.setLoading}
+              setError={setError}
+              setNoResults={setNoResults}
+            />
+          </li>
+          <li>
+            <ListPopuler
+              movies={props.movies}
+              setMovies={props.setMovies}
+              setLoading={props.setLoading}
+              setError={setError}
+              setNoResults={setNoResults}
+            />
+          </li>
+          <li>
+            <ListYear
+              movies={props.movies}
+              setMovies={props.setMovies}
+              setLoading={props.setLoading}
+              setError={setError}
+              setNoResults={setNoResults}
+            />
+          </li>
         </ul>
       </aside>
       <main className={styles.contentMain}>
