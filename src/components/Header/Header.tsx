@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img className={styles.logoImg} src={logo} alt="logo" />
+        <a href="/">
+          <img className={styles.logoImg} src={logo} alt="logo" />
+        </a>
       </div>
       <nav className={styles.nav}>
         <a href="#">Giriş Yap</a>
@@ -16,4 +18,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
