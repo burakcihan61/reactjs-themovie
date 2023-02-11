@@ -47,7 +47,7 @@ const Content: React.FC<TProps> = (props: TProps) => {
       </aside>
       <main className={styles.contentMain}>
         {error && <Errors>{error}</Errors>}
-        {!props.movies.length && <Errors>{noResults}</Errors>}
+        {props.movies.length === 0 && <Errors>{noResults}</Errors>}
         {props.loading ? (
           <Loading />
         ) : (
