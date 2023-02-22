@@ -1,53 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './content.module.scss';
 import Card from '../Card/Card';
 import { TMovieCard } from '../../types/TypeMovieDB';
-import { getMovies } from '../../services/movie';
 import Loading from '../Loading/Loading';
 import Errors from '../Errors/Errors';
 
 type TProps = {
   loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   movies: TMovieCard[];
-  setMovies: React.Dispatch<React.SetStateAction<TMovieCard[]>>;
+  error: string | null;
+  noResults: string;
+  onClickHandlerTrendList: () => void;
+  onClickHandlerPopularList: () => void;
+  getMovieYears: () => void;
 };
 
 const Content: React.FC<TProps> = (props: TProps) => {
-  const [error, setError] = useState<string | null>(null);
-  const [noResults, setNoResults] = useState('');
-
-  useEffect(() => {
-    props.setLoading(true);
-    setTimeout(() => {
-      getMovies()
-        .then((res) => {
-          props.setLoading(false);
-          props.setMovies(res.results);
-        })
-        .catch((err) => {
-          props.setLoading(false);
-          setError(err.message);
-          setNoResults('No results found');
-        });
-    }, 1500);
-  }, []);
-
   return (
     <div className={styles.container}>
       <aside className={styles.asideContent}>
         <ul>
-          <li>Trend</li>
-          <li>Popüler</li>
-          <li>2023 Filmleri</li>
-          <li>2022 Filmleri</li>
-          <li>2021 Filmleri</li>
-          <li>2020 Filmleri</li>
+          <li onClick={() => props.onClickHandlerTrendList()}>TREND</li>
+          <li onClick={() => props.onClickHandlerPopularList()}>POPULER</li>
+          <li onClick={() => props.getMovieYears()}>2023 YIL</li>
         </ul>
       </aside>
       <main className={styles.contentMain}>
-        {error && <Errors>{error}</Errors>}
-        {props.movies.length === 0 && <Errors>{noResults}</Errors>}
+        {props.error && <Errors>{props.error}</Errors>}
+        {props.movies.length === 0 && <Errors>{props.noResults}</Errors>}
         {props.loading ? (
           <Loading />
         ) : (

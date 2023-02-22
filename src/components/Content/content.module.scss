@@ -8,17 +8,23 @@
   .asideContent {
     padding-top: 20px;
     width: 15%;
-    background-color: aqua;
     ul {
       list-style: none;
       padding: 0;
-      li {
-        padding: 10px;
-        border-radius: 10px;
-        &:hover {
-          background-color: red;
-          cursor: pointer;
-        }
+    }
+    li {
+      margin-bottom: 10px;
+      color: $dark-grayish-blue;
+      display: flex;
+      align-items: first baseline;
+      justify-content: center;
+      flex-direction: column;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      &:hover {
+        color: $very-dark-blue;
       }
     }
   }
