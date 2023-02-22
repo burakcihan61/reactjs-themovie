@@ -17,7 +17,7 @@ const Container = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [noResults, setNoResults] = useState<string>('');
+  const [noResults, setNoResults] = useState<string>('Movie no results');
 
   const searchMovie = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -41,7 +41,6 @@ const Container = () => {
         .catch((err) => {
           setLoading(false);
           setError(err.message);
-          setNoResults('No results found');
         });
     }, 1500);
   }, []);
@@ -56,7 +55,6 @@ const Container = () => {
         .catch((err) => {
           setLoading(false);
           setError(err.message);
-          setNoResults('No results found');
         });
     }, 1000);
   };
@@ -71,7 +69,6 @@ const Container = () => {
         .catch((err) => {
           setLoading(false);
           setError(err.message);
-          setNoResults('No results found');
         });
     }, 1000);
   };
@@ -86,7 +83,6 @@ const Container = () => {
         .catch((err) => {
           setLoading(false);
           setError(err.message);
-          setNoResults('No results found');
         });
     }, 1000);
   };
