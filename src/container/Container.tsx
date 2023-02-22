@@ -17,7 +17,7 @@ const Container = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [noResults, setNoResults] = useState<string>('Movie no results');
+  const [noResults] = useState<string>('Movie no results');
 
   const searchMovie = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
