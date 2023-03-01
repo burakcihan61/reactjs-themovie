@@ -9,7 +9,7 @@ type TProps = {
   loading: boolean;
   movies: TMovieCard[];
   error: string | null;
-  noResults: string;
+  noResults: string | null;
   onClickHandlerTrendList: () => void;
   onClickHandlerPopularList: () => void;
   getMovieYears: () => void;
@@ -26,13 +26,14 @@ const Content: React.FC<TProps> = (props: TProps) => {
         </ul>
       </aside>
       <main className={styles.contentMain}>
-        {props.error && <Errors>{props.error}</Errors>}
-        {props.movies.length === 0 && <Errors>{props.noResults}</Errors>}
+        {props.error && <Errors data-testid="errors">{props.error}</Errors>}
+        {props.movies.length === 0 && <Errors data-testid="errors">{props.noResults}</Errors>}
         {props.loading ? (
           <Loading />
         ) : (
           props.movies.map((movie: TMovieCard) => (
             <Card
+              data-testid="movie-1"
               key={movie.id}
               movieId={movie.id}
               movieTitle={movie.title}

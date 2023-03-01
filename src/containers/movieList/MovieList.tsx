@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import styles from './container.module.scss';
-import Header from '../components/Header/Header';
-import SearchBar from '../components/SearchBar/SearchBar';
-import Content from '../components/Content/Content';
-import { TMovieCard } from '../types/TypeMovieDB';
+import styles from './movieList.module.scss';
+import Header from '../../components/Header/Header';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import Content from '../../components/Content/Content';
+import { TMovieCard } from '../../types/TypeMovieDB';
 import {
   getMoviePopuler,
   getMovies,
   getMovieTrend,
   getMovieYears,
   searchMovies,
-} from '../services/movie';
+} from '../../services/movie';
 
-const Container = () => {
+const MovieList = () => {
   const [movies, setMovies] = useState<TMovieCard[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [noResults] = useState<string>('Movie no results');
+  const [noResults, setNoResults] = useState<string | null>('');
 
-  const searchMovie = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    if (searchTerm === '') {
+  const onSearchSubmit = async (text: string) => {
+    if (text === '') {
       return alert('Please enter a movie name');
     } else {
-      await searchMovies(searchTerm).then((res) => {
+      await searchMovies(text).then((res) => {
         setMovies(res.results);
-        setSearchTerm('');
       });
     }
   };
@@ -89,7 +86,7 @@ const Container = () => {
   return (
     <div className={styles.container}>
       <Header />
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchMovie={searchMovie} />
+      <SearchBar onSubmit={onSearchSubmit} />
       <Content
         loading={loading}
         movies={movies}
@@ -103,4 +100,4 @@ const Container = () => {
   );
 };
 
-export default Container;
+export default MovieList;

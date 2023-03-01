@@ -6,7 +6,11 @@ type TProps = {
 };
 
 const Errors = ({ children }: TProps) => {
-  return <div className={styles.error}>{children}</div>;
+  return (
+    <div className={styles.error} data-testid="errors">
+      {children}
+    </div>
+  );
 };
 
 export default Errors;
