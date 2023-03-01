@@ -7,12 +7,16 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.logo}>
         <a href="/">
-          <img className={styles.logoImg} src={logo} alt="logo" />
+          <img className={styles.logoImg} src={logo} alt="logo" data-testid="logo-1" />
         </a>
       </div>
       <nav className={styles.nav}>
-        <a href="#">Giriş Yap</a>
-        <a href="#">Üye Ol</a>
+        <a href="#" data-testid="giris-yap">
+          Giriş Yap
+        </a>
+        <a href="#" data-testid="üye-ol">
+          Üye Ol
+        </a>
       </nav>
     </header>
   );

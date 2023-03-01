@@ -3,8 +3,8 @@ import styles from './loading.module.scss';
 
 const Loading = () => {
   return (
-    <div className={styles.center}>
-      <span className={styles.loader}></span>
+    <div className={styles.center} data-testid="loading-1">
+      <span className={styles.loader} data-testid="loading-2"></span>
     </div>
   );
 };

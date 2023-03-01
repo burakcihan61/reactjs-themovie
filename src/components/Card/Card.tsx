@@ -11,7 +11,7 @@ type TProps = {
 const Card: React.FC<TProps> = (props: TProps) => {
   return (
     <>
-      <div key={props.movieId} className={styles.movie}>
+      <div key={props.movieId} className={styles.movie} data-testid="movie-1">
         <img src={`${props.movieImage}${props.moviePosterPath}`} alt={props.movieTitle} />
         <div className={styles.movieInfos}>
           <h5 className={styles.movieTitle}>{props.movieTitle}</h5>
